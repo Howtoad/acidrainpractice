@@ -1,0 +1,18 @@
+name: Publish to Netlify
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Publish to Netlify
+        run: |
+          netlify deploy \
+            --auth $NETLIFY_AUTH_TOKEN \
+            --site db6b6709-bcee-495d-88df-c88096e9ed57 \
+            --dir . \
