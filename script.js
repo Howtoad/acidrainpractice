@@ -1,8 +1,8 @@
 const inputSequence = [
-  ["q", 0, Infinity],
-  ["w", 16.66, 233.24],
-  ["w", 399.84, 499.82],
-  ["w", 566.44, 599.76],
+  [sessionStorage.getItem(key2.value), 0, Infinity],
+  [sessionStorage.getItem(key2.value), 16.66, 233.24],
+  [sessionStorage.getItem(key2.value), 399.84, 499.82],
+  [sessionStorage.getItem(key2.value), 566.44, 599.76],
 ];
 
 let currentIndex = 0;
