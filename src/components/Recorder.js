@@ -1,15 +1,20 @@
 import React from "react";
 
-const Recorder = ({ keySetter, number }) => {
+const Recorder = ({ keySetter, number, existingKeys }) => {
   const handleClick = () => {
     console.log(`Select input for '${number}'`);
 
     // Add an event listener for the "keypress" event
     const listener = (event) => {
-      console.log(`Key selected for '${number}' is: ` + event.key);
 
-      // Save the key to the state variable
-      keySetter(event.key);
+      if (existingKeys.includes(event.key)) {
+        alert("This key is already in use!")
+      } else {
+        console.log(`Key selected for '${number}' is: ` + event.key);
+
+        // Save the key to the state variable
+        keySetter(event.key);
+      }
 
       // Remove the event listener so we don't keep listening
       document.removeEventListener("keypress", listener);

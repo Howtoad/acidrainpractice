@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import CheckSequence from "./components/CheckSequence";
 import InputSelect from "./components/InputSelect";
@@ -6,6 +6,15 @@ import InputSelect from "./components/InputSelect";
 function App() {
   const [key1, setKey1] = useState(null);
   const [key2, setKey2] = useState(null);
+
+  const [existingKeys, setExistingKeys] = useState([key1, key2]);
+
+  useEffect(
+    () => {
+      setExistingKeys([key1, key2]);
+    },
+    [key1, key2]
+  );
 
   const frameDataMap = {
     "AcidRain": [
@@ -22,8 +31,18 @@ function App() {
         <h1 className="text-center text-white font-bold text-3xl pt-5">
           Choose your inputs
         </h1>
-        <InputSelect keyState={key1} keySetter={setKey1} number={1} />
-        <InputSelect keyState={key2} keySetter={setKey2} number={2} />
+        <InputSelect
+          keyState={key1}
+          keySetter={setKey1}
+          number={1}
+          existingKeys={existingKeys}
+        />
+        <InputSelect
+          keyState={key2}
+          keySetter={setKey2}
+          number={2}
+          existingKeys={existingKeys}
+        />
         {key1 && key2 && <CheckSequence
           key1={key1}
           key2={key2}
