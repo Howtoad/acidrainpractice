@@ -4,6 +4,8 @@ import CheckSequence from "./components/CheckSequence";
 import InputSelect from "./components/InputSelect";
 
 function App() {
+  const [listening, setListening] = useState(false);
+
   const [key1, setKey1] = useState(null);
   const [key2, setKey2] = useState(null);
 
@@ -36,12 +38,14 @@ function App() {
           keySetter={setKey1}
           number={1}
           existingKeys={existingKeys}
+          listening={[listening, setListening]}
         />
         <InputSelect
           keyState={key2}
           keySetter={setKey2}
           number={2}
           existingKeys={existingKeys}
+          listening={[listening, setListening]}
         />
         {key1 && key2 && <CheckSequence
           key1={key1}
