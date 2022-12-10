@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react';
 
-const CheckSequence = ({ key1, key2 }) => {
+const FRAME_LENGTH = 16.66;
 
-    const [inputSequence] = useState([
-        [key1, 0, Infinity],
-        [key2, 16.66, 233.24],
-        [key2, 399.84, 499.82],
-        [key2, 566.44, 599.76],
-    ]);
+const CheckSequence = ({ inputSequence }) => {
+
+    // Convert the time values from frames to milliseconds
+    const inputSequenceMs = inputSequence.map((item) => {
+        const msA = item[1] * FRAME_LENGTH;
+        const msB = item[2] * FRAME_LENGTH;
+        return [item[0], msA, msB];
+    });
+
     const [currentIndex, setCurrentIndex] = useState(0);
     const [startTime, setStartTime] = useState(null);
 
@@ -17,7 +20,8 @@ const CheckSequence = ({ key1, key2 }) => {
             if (currentIndex === 0) {
                 setStartTime(Date.now());
             }
-            const [key, minTime, maxTime] = inputSequence[currentIndex];
+            console.log(currentIndex);
+            const [key, minTime, maxTime] = inputSequenceMs[currentIndex];
 
             // Calculate the time elapsed since the start of the sequence
             const elapsedTime = Date.now() - startTime;
@@ -26,13 +30,14 @@ const CheckSequence = ({ key1, key2 }) => {
                 console.log(
                     `${key}, eventTime: ${elapsedTime} minTime: ${minTime}, maxTime: ${maxTime}`
                 );
-                // Move to the next item in the sequence
-                setCurrentIndex(currentIndex + 1);
 
                 // If we've reached the end of the sequence, print 'true' to the console
-                if (currentIndex === inputSequence.length) {
+                if (currentIndex === (inputSequenceMs.length - 1)) {
                     console.log("Excellent");
                     setCurrentIndex(0);
+                } else {
+                    // Move to the next item in the sequence
+                    setCurrentIndex(currentIndex + 1);
                 }
             } else {
                 console.log("Kamu");
@@ -46,7 +51,7 @@ const CheckSequence = ({ key1, key2 }) => {
         return () => {
             document.removeEventListener("keypress", handleKeyPress);
         };
-    }, [currentIndex, inputSequence, startTime]);
+    }, [currentIndex, inputSequenceMs, startTime]);
 
     return <div>{/* The component doesn't have any rendered content */}</div>;
 };

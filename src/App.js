@@ -7,6 +7,15 @@ function App() {
   const [key1, setKey1] = useState(null);
   const [key2, setKey2] = useState(null);
 
+  const inputSequences = {
+    "AcidRain": [
+      [key1, 0, Infinity],
+      [key2, 1, 14],
+      [key2, 24, 30],
+      [key2, 34, 36],
+    ]
+  }
+
   return (
     <div className="App">
       <div className="bg-gray-700 w-screen h-screen">
@@ -15,7 +24,11 @@ function App() {
         </h1>
         <InputSelect keyState={key1} keySetter={setKey1} number={1} />
         <InputSelect keyState={key2} keySetter={setKey2} number={2} />
-        {key1 && key2 && <CheckSequence key1={key1} key2={key2} />}
+        {key1 && key2 && <CheckSequence
+          key1={key1}
+          key2={key2}
+          inputSequence={inputSequences["AcidRain"]}
+        />}
       </div>
     </div>
   );
