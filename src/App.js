@@ -10,8 +10,8 @@ function App() {
   const frameDataMap = {
     "AcidRain": [
       [key1],
-      [key2, 1, 13],
-      [key2, 24, 29],
+      [key2, 1, 14],
+      [key2, 24, 26],
       [key2, 34, 35],
     ]
   }
