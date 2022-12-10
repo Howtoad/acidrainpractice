@@ -15,6 +15,7 @@ const InputSelect = ({
       </p>
       <Recorder
         keySetter={keySetter}
+        keyState={keyState}
         number={number}
         existingKeys={existingKeys}
         listening={listening}
