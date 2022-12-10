@@ -6,15 +6,15 @@ const Recorder = ({ keySetter, number, existingKeys }) => {
 
     // Add an event listener for the "keypress" event
     const listener = (event) => {
-
       if (existingKeys.includes(event.key)) {
-        alert("This key is already in use!")
-      } else {
-        console.log(`Key selected for '${number}' is: ` + event.key);
-
-        // Save the key to the state variable
-        keySetter(event.key);
+        console.log("This key is already in use!")
+        return
       }
+
+      console.log(`Key selected for '${number}' is: ` + event.key);
+
+      // Save the key to the state variable
+      keySetter(event.key);
 
       // Remove the event listener so we don't keep listening
       document.removeEventListener("keypress", listener);
