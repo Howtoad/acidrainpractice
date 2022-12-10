@@ -6,9 +6,14 @@ const CheckSequence = ({ inputSequence }) => {
 
     // Convert the time values from frames to milliseconds
     const inputSequenceMs = inputSequence.map((item) => {
-        const msA = item[1] * FRAME_LENGTH;
-        const msB = item[2] * FRAME_LENGTH;
-        return [item[0], msA, msB];
+        if (item.length === 1) {
+            return [item[0], 0, Infinity];
+        } else {
+            const msA = item[1] * FRAME_LENGTH;
+            // we add one because this is a range, so we want to include the last frame
+            const msB = (item[2] + 1) * FRAME_LENGTH;
+            return [item[0], msA, msB];
+        }
     });
 
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -20,7 +25,7 @@ const CheckSequence = ({ inputSequence }) => {
             if (currentIndex === 0) {
                 setStartTime(Date.now());
             }
-            console.log(currentIndex);
+
             const [key, minTime, maxTime] = inputSequenceMs[currentIndex];
 
             // Calculate the time elapsed since the start of the sequence

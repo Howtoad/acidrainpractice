@@ -9,10 +9,10 @@ function App() {
 
   const inputSequences = {
     "AcidRain": [
-      [key1, 0, Infinity],
-      [key2, 1, 14],
-      [key2, 24, 30],
-      [key2, 34, 36],
+      [key1],
+      [key2, 1, 13],
+      [key2, 24, 29],
+      [key2, 34, 35],
     ]
   }
 
