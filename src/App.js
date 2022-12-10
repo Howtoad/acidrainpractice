@@ -7,7 +7,7 @@ function App() {
   const [key1, setKey1] = useState(null);
   const [key2, setKey2] = useState(null);
 
-  const inputSequences = {
+  const frameDataMap = {
     "AcidRain": [
       [key1],
       [key2, 1, 13],
@@ -27,7 +27,7 @@ function App() {
         {key1 && key2 && <CheckSequence
           key1={key1}
           key2={key2}
-          inputSequence={inputSequences["AcidRain"]}
+          frameData={frameDataMap["AcidRain"]}
         />}
       </div>
     </div>

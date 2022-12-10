@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 
 const FRAME_LENGTH = 16.66;
 
-const CheckSequence = ({ inputSequence }) => {
+const CheckSequence = ({ frameData }) => {
 
     // Convert the time values from frames to milliseconds
-    const inputSequenceMs = inputSequence.map((item) => {
+    const frameDataMs = frameData.map((item) => {
         if (item.length === 1) {
             return [item[0], 0, Infinity];
         } else {
@@ -26,7 +26,7 @@ const CheckSequence = ({ inputSequence }) => {
                 setStartTime(Date.now());
             }
 
-            const [key, minTime, maxTime] = inputSequenceMs[currentIndex];
+            const [key, minTime, maxTime] = frameDataMs[currentIndex];
 
             // Calculate the time elapsed since the start of the sequence
             const elapsedTime = Date.now() - startTime;
@@ -37,7 +37,7 @@ const CheckSequence = ({ inputSequence }) => {
                 );
 
                 // If we've reached the end of the sequence, print 'true' to the console
-                if (currentIndex === (inputSequenceMs.length - 1)) {
+                if (currentIndex === (frameDataMs.length - 1)) {
                     console.log("Excellent");
                     setCurrentIndex(0);
                 } else {
@@ -56,7 +56,7 @@ const CheckSequence = ({ inputSequence }) => {
         return () => {
             document.removeEventListener("keypress", handleKeyPress);
         };
-    }, [currentIndex, inputSequenceMs, startTime]);
+    }, [currentIndex, frameDataMs, startTime]);
 
     return <div>{/* The component doesn't have any rendered content */}</div>;
 };
