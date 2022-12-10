@@ -1,11 +1,26 @@
 import React from "react";
 
-const Recorder = ({ keySetter, number }) => {
+const Recorder = ({ keySetter, number, existingKeys, listening }) => {
   const handleClick = () => {
+
+    let [isListening, setListening] = listening;
+
+    if (isListening) {
+      console.log("Already listening for a keypress!")
+      return;
+    }
+
+    setListening(true);
+
     console.log(`Select input for '${number}'`);
 
     // Add an event listener for the "keypress" event
     const listener = (event) => {
+      if (existingKeys.includes(event.key)) {
+        console.log("This key is already in use!")
+        return;
+      }
+
       console.log(`Key selected for '${number}' is: ` + event.key);
 
       // Save the key to the state variable
@@ -13,7 +28,10 @@ const Recorder = ({ keySetter, number }) => {
 
       // Remove the event listener so we don't keep listening
       document.removeEventListener("keypress", listener);
+
+      setListening(false);
     };
+
     document.addEventListener("keypress", listener);
   };
 
