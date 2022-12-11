@@ -22,6 +22,7 @@ const Recorder = ({
 
     // Add an event listener for the "keypress" event
     const listener = (event) => {
+      console.log(existingKeys, event.key, keyState)
       if (existingKeys.includes(event.key) && event.key !== keyState) {
         console.log("This key is already in use!")
         return;
@@ -44,6 +45,7 @@ const Recorder = ({
   // Use the useState hook to create a state variable and a function to update it
   return (
     <div
+      data-testid="recorder"
       className="rounded-full w-8 h-8 bg-red-600 cursor-pointer self-center"
       onClick={handleClick}
     />
