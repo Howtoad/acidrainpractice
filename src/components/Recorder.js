@@ -1,6 +1,12 @@
 import React from "react";
 
-const Recorder = ({ keySetter, number, existingKeys, listening }) => {
+const Recorder = ({
+  keySetter,
+  keyState,
+  number,
+  existingKeys,
+  listening
+}) => {
   const handleClick = () => {
 
     let [isListening, setListening] = listening;
@@ -16,7 +22,7 @@ const Recorder = ({ keySetter, number, existingKeys, listening }) => {
 
     // Add an event listener for the "keypress" event
     const listener = (event) => {
-      if (existingKeys.includes(event.key)) {
+      if (existingKeys.includes(event.key) && event.key !== keyState) {
         console.log("This key is already in use!")
         return;
       }
