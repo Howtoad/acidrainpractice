@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import CheckSequence from "./components/CheckSequence";
 import InputSelect from "./components/InputSelect";
+import ProgressBar from "./components/ProgressBar";
 
 function App() {
   const [listening, setListening] = useState(false);
@@ -11,21 +12,13 @@ function App() {
 
   const [existingKeys, setExistingKeys] = useState([key1, key2]);
 
-  useEffect(
-    () => {
-      setExistingKeys([key1, key2]);
-    },
-    [key1, key2]
-  );
+  useEffect(() => {
+    setExistingKeys([key1, key2]);
+  }, [key1, key2]);
 
   const frameDataMap = {
-    "AcidRain": [
-      [key1],
-      [key2, 1, 14],
-      [key2, 24, 26],
-      [key2, 34, 35],
-    ]
-  }
+    AcidRain: [[key1], [key2, 1, 14], [key2, 24, 26], [key2, 34, 35]],
+  };
 
   return (
     <div className="App">
@@ -47,11 +40,14 @@ function App() {
           existingKeys={existingKeys}
           listening={[listening, setListening]}
         />
-        {key1 && key2 && <CheckSequence
-          key1={key1}
-          key2={key2}
-          frameData={frameDataMap["AcidRain"]}
-        />}
+        {key1 && key2 && (
+          <CheckSequence
+            key1={key1}
+            key2={key2}
+            frameData={frameDataMap["AcidRain"]}
+          />
+        )}
+        <ProgressBar></ProgressBar>
       </div>
     </div>
   );
