@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 
-const ProgressBar = () => {
+const ProgressBar = ({ existingKeys, listening }) => {
   return (
     <>
       <div className="mx-auto max-w-[60%] flex">
@@ -16,13 +16,25 @@ const ProgressBar = () => {
             height: "40px",
             backgroundColor: "transparent",
             display: "flex",
+            position: "relative",
           }}
         >
+          <motion.div
+            initial={{ width: "0%" }}
+            style={{
+              height: "40px",
+              backgroundColor: "#00000030",
+              display: "flex",
+              position: "absolute",
+            }}
+            animate={{ width: "100%" }}
+            transition={{ duration: 0.59976 }}
+          ></motion.div>
           <motion.div
             initial={{ width: "38.88%" }}
             style={{
               height: "100%",
-              backgroundColor: "#00800050",
+              backgroundColor: "#008000",
               marginLeft: "2.77%",
             }}
           />
@@ -30,7 +42,7 @@ const ProgressBar = () => {
             initial={{ width: "8.33%" }}
             style={{
               height: "100%",
-              backgroundColor: "#00800050",
+              backgroundColor: "#008000",
               marginLeft: "25%",
             }}
           />
@@ -38,7 +50,7 @@ const ProgressBar = () => {
             initial={{ width: "5.55%" }}
             style={{
               height: "100%",
-              backgroundColor: "#00800050",
+              backgroundColor: "#008000",
               marginLeft: "19.444%",
             }}
           />

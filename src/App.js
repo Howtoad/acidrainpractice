@@ -47,7 +47,10 @@ function App() {
             frameData={frameDataMap["AcidRain"]}
           />
         )}
-        <ProgressBar></ProgressBar>
+        <ProgressBar
+          existingKeys={existingKeys}
+          listening={[listening, setListening]}
+        ></ProgressBar>
       </div>
     </div>
   );
