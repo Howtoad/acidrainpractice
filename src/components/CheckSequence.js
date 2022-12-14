@@ -36,7 +36,7 @@ const CheckSequence = ({ frameData }) => {
         elapsedTime <= maxTime
       ) {
         console.log(
-          `${key}, Framepress: ${Math.round(elapsedTime / 16.66)} minFrame: ${
+          `${key}, Framepress: ${Math.floor(elapsedTime / 16.66)} minFrame: ${
             minTime / 16.66
           }, maxFrame: ${maxTime / 16.66 - 1}`
         );
@@ -50,7 +50,7 @@ const CheckSequence = ({ frameData }) => {
           setCurrentIndex(currentIndex + 1);
         }
       } else {
-        console.log("failFrame: " + Math.round(elapsedTime / 16.66));
+        console.log("failFrame: " + Math.floor(elapsedTime / 16.66));
         console.log("Kamu");
         setCurrentIndex(0);
         setStartTime(null);
