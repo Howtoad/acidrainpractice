@@ -6,7 +6,7 @@ const InputSelect = ({
   keySetter,
   number,
   existingKeys,
-  listening
+  listening,
 }) => {
   return (
     <div data-testid="input-select" className="flex mb-5">
