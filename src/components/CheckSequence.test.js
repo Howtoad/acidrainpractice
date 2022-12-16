@@ -8,6 +8,7 @@ global.console.log = mockConsoleLog;
 
 describe('CheckSequence component', () => {
     test('should log "Excellent" to the console when the correct sequence of keys is pressed within the time range', () => {
+        const setBarAnimation = jest.fn();
 
         const frameData = [
             ['a'],
@@ -16,7 +17,13 @@ describe('CheckSequence component', () => {
             ['b', 34, 35],
         ];
 
-        render(<CheckSequence frameData={frameData} />);
+        render(
+            <CheckSequence
+                frameData={frameData}
+                barAnimation="%0"
+                setBarAnimation={setBarAnimation}
+            />
+        );
 
         fireEvent.keyPress(document, { key: 'a', code: 'KeyA', charCode: 65 });
 
