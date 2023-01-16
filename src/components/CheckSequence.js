@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 const FRAME_LENGTH = 16.66;
 
@@ -23,7 +23,7 @@ const CheckSequence = ({
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [startTime, setStartTime] = useState(null);
-
+  const streakRef = useRef(0);
   useEffect(() => {
     const handleKeyPress = (event) => {
       // If this is the first key in the sequence, record the start time
@@ -53,10 +53,10 @@ const CheckSequence = ({
           console.log("Excellent");
           setCurrentIndex(0);
           setBarAnimation("0%");
-          streak++;
-          localStorage.setItem("streak", streak);
-          if (streak > highScore) {
-            localStorage.setItem("highScore", streak);
+          streakRef.current++;
+          localStorage.setItem("streak", streakRef.current);
+          if (streakRef.current > highScore) {
+            localStorage.setItem("highScore", streakRef.current);
           }
         } else {
           // Move to the next item in the sequence
@@ -68,8 +68,8 @@ const CheckSequence = ({
         setCurrentIndex(0);
         setStartTime(null);
         setBarAnimation("0%");
-        streak = 0;
-        localStorage.setItem("streak", streak);
+        streakRef.current = 0;
+        localStorage.setItem("streak", streakRef.current);
       }
     };
 
