@@ -6,6 +6,7 @@ const ProgressBar = ({
   barAnimation,
   setBarAnimation,
 }) => {
+  //
   const [key1, key2] = existingKeys;
   return (
     <>
