@@ -1,4 +1,4 @@
-module.exports = {
-    testEnvironment: 'jest-environment-jsdom',
-    timers: 'fake'
-};
+// module.exports = {
+//     testEnvironment: 'jest-environment-jsdom',
+//     timers: 'fake'
+// };
