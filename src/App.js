@@ -3,12 +3,16 @@ import "./App.css";
 import CheckSequence from "./components/CheckSequence";
 import InputSelect from "./components/InputSelect";
 import ProgressBar from "./components/ProgressBar";
+import ScoreTracking from "./components/ScoreTracking";
 
 function App() {
   const [listening, setListening] = useState(false);
 
   const [key1, setKey1] = useState(null);
   const [key2, setKey2] = useState(null);
+  const [barAnimation, setBarAnimation] = useState("0%");
+  let streak = localStorage.getItem("streak");
+  let highScore = localStorage.getItem("highScore");
 
   const [existingKeys, setExistingKeys] = useState([key1, key2]);
 
@@ -45,9 +49,20 @@ function App() {
             key1={key1}
             key2={key2}
             frameData={frameDataMap["AcidRain"]}
+            setBarAnimation={setBarAnimation}
+            barAnimation={barAnimation}
+            streak={streak}
+            highScore={highScore}
           />
         )}
-        <ProgressBar></ProgressBar>
+        <ProgressBar
+          existingKeys={existingKeys}
+          listening={[listening, setListening]}
+          setBarAnimation={setBarAnimation}
+          barAnimation={barAnimation}
+        ></ProgressBar>
+
+        <ScoreTracking></ScoreTracking>
       </div>
     </div>
   );

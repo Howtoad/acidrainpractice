@@ -2,7 +2,13 @@ import React, { useState, useEffect } from "react";
 
 const FRAME_LENGTH = 16.66;
 
-const CheckSequence = ({ frameData }) => {
+const CheckSequence = ({
+  frameData,
+  barAnimation,
+  setBarAnimation,
+  streak,
+  highScore,
+}) => {
   // Convert the time values from frames to milliseconds
   const frameDataMs = frameData.map((item) => {
     if (item.length === 1) {
@@ -23,6 +29,7 @@ const CheckSequence = ({ frameData }) => {
       // If this is the first key in the sequence, record the start time
       if (currentIndex === 0) {
         setStartTime(Date.now());
+        setBarAnimation("100%");
       }
 
       const [key, minTime, maxTime] = frameDataMs[currentIndex];
@@ -45,6 +52,12 @@ const CheckSequence = ({ frameData }) => {
         if (currentIndex === frameDataMs.length - 1) {
           console.log("Excellent");
           setCurrentIndex(0);
+          setBarAnimation("0%");
+          streak++;
+          localStorage.setItem("streak", streak);
+          if (streak > highScore) {
+            localStorage.setItem("highScore", streak);
+          }
         } else {
           // Move to the next item in the sequence
           setCurrentIndex(currentIndex + 1);
@@ -54,6 +67,9 @@ const CheckSequence = ({ frameData }) => {
         console.log("Kamu");
         setCurrentIndex(0);
         setStartTime(null);
+        setBarAnimation("0%");
+        streak = 0;
+        localStorage.setItem("streak", streak);
       }
     };
 
