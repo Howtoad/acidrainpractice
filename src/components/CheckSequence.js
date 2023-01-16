@@ -78,7 +78,7 @@ const CheckSequence = ({
     return () => {
       document.removeEventListener("keypress", handleKeyPress);
     };
-  }, [currentIndex, frameDataMs, startTime]);
+  }, [currentIndex, frameDataMs, startTime, highScore, setBarAnimation]);
 
   return <div>{/* The component doesn't have any rendered content */}</div>;
 };
