@@ -14,7 +14,7 @@ function App() {
   const [barAnimation, setBarAnimation] = useState("0%");
   let streak = localStorage.getItem("streak");
   let highScore = localStorage.getItem("highScore");
-  const [isPlaying, setIsPlaying] = useState(false);
+
   const videoRef = useRef(null);
 
   const [existingKeys, setExistingKeys] = useState([key1, key2]);
@@ -67,7 +67,7 @@ function App() {
         ></ProgressBar>
 
         <ScoreTracking></ScoreTracking>
-        <VideoRain setIsPlaying={setIsPlaying} videoRef={videoRef}></VideoRain>
+        <VideoRain videoRef={videoRef}></VideoRain>
       </div>
     </div>
   );
