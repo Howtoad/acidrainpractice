@@ -8,6 +8,7 @@ const CheckSequence = ({
   setBarAnimation,
   streak,
   highScore,
+  videoRef,
 }) => {
   // Convert the time values from frames to milliseconds
   const frameDataMs = frameData.map((item) => {
@@ -30,6 +31,7 @@ const CheckSequence = ({
       if (currentIndex === 0) {
         setStartTime(Date.now());
         setBarAnimation("100%");
+        videoRef.current.currentTime = 0;
       }
 
       const [key, minTime, maxTime] = frameDataMs[currentIndex];
@@ -47,7 +49,7 @@ const CheckSequence = ({
             minTime / 16.66
           }, maxFrame: ${maxTime / 16.66 - 1}`
         );
-
+        videoRef.current.play();
         // If we've reached the end of the sequence, print 'true' to the console
         if (currentIndex === frameDataMs.length - 1) {
           console.log("Excellent");
@@ -70,6 +72,7 @@ const CheckSequence = ({
         setBarAnimation("0%");
         streakRef.current = 0;
         localStorage.setItem("streak", streakRef.current);
+        videoRef.current.pause();
       }
     };
 
