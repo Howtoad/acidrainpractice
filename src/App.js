@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import "./App.css";
 import CheckSequence from "./components/CheckSequence";
 import InputSelect from "./components/InputSelect";
 import ProgressBar from "./components/ProgressBar";
 import ScoreTracking from "./components/ScoreTracking";
+import VideoRain from "./components/VideoRain";
 
 function App() {
   const [listening, setListening] = useState(false);
@@ -13,6 +14,8 @@ function App() {
   const [barAnimation, setBarAnimation] = useState("0%");
   let streak = localStorage.getItem("streak");
   let highScore = localStorage.getItem("highScore");
+  const [isPlaying, setIsPlaying] = useState(false);
+  const videoRef = useRef(null);
 
   const [existingKeys, setExistingKeys] = useState([key1, key2]);
 
@@ -53,6 +56,7 @@ function App() {
             barAnimation={barAnimation}
             streak={streak}
             highScore={highScore}
+            videoRef={videoRef}
           />
         )}
         <ProgressBar
@@ -63,6 +67,7 @@ function App() {
         ></ProgressBar>
 
         <ScoreTracking></ScoreTracking>
+        <VideoRain setIsPlaying={setIsPlaying} videoRef={videoRef}></VideoRain>
       </div>
     </div>
   );
