@@ -1,4 +1,4 @@
-import acidvideo from "../media/videos/acidrainwithtransparent.webm";
+import acidvideo from "../media/videos/test2.webm";
 const VideoRain = ({ videoRef }) => {
   return (
     <div className="max-w-[600px]">
