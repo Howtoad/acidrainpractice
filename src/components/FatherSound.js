@@ -26,8 +26,8 @@ const FatherSound = () => {
   };
 
   return (
-    <div className={`cursor-pointer text-[${soundIconColor}]`}>
-      <GiChessKing size={28} onClick={playFather} />
+    <div className={`cursor-pointer max-w-fit`}>
+      <GiChessKing size={28} onClick={playFather} fill={soundIconColor} />
     </div>
   );
 };
