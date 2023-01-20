@@ -26,8 +26,8 @@ const IngameSound = () => {
     }
   };
   return (
-    <div className={`cursor-pointer max-w-fit text-[${soundIconColor}]`}>
-      <AiFillSound size={28} onClick={playIngameSound} />
+    <div className={`cursor-pointer max-w-fit`}>
+      <AiFillSound size={28} onClick={playIngameSound} fill={soundIconColor} />
     </div>
   );
 };

@@ -26,8 +26,8 @@ const Metronome = () => {
   };
 
   return (
-    <div className={`cursor-pointer text-[${soundIconColor}]`}>
-      <GiMetronome size={28} onClick={playMetronome} />
+    <div className={`cursor-pointer max-w-fit`}>
+      <GiMetronome size={28} onClick={playMetronome} fill={soundIconColor} />
     </div>
   );
 };
