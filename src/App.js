@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import "./App.css";
 import CheckSequence from "./components/CheckSequence";
+import IngameSound from "./components/IngameSound";
 import InputSelect from "./components/InputSelect";
 import ProgressBar from "./components/ProgressBar";
 import ScoreTracking from "./components/ScoreTracking";
@@ -30,6 +31,7 @@ function App() {
   return (
     <div className="App">
       <div className="bg-gray-700 w-screen h-screen">
+        <IngameSound></IngameSound>
         <h1 className="text-center text-white font-bold text-3xl pt-5">
           Choose your inputs
         </h1>
