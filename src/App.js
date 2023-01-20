@@ -1,8 +1,10 @@
 import { useEffect, useState, useRef } from "react";
 import "./App.css";
 import CheckSequence from "./components/CheckSequence";
+import FatherSound from "./components/FatherSound";
 import IngameSound from "./components/IngameSound";
 import InputSelect from "./components/InputSelect";
+import Metronome from "./components/Metronome";
 import ProgressBar from "./components/ProgressBar";
 import ScoreTracking from "./components/ScoreTracking";
 import VideoRain from "./components/VideoRain";
@@ -31,7 +33,11 @@ function App() {
   return (
     <div className="App">
       <div className="bg-gray-700 w-screen h-screen">
-        <IngameSound></IngameSound>
+        <div className="flex pt-2 pl-2 gap-2">
+          <IngameSound></IngameSound>
+          <Metronome></Metronome>
+          <FatherSound></FatherSound>
+        </div>
         <h1 className="text-center text-white font-bold text-3xl pt-5">
           Choose your inputs
         </h1>
