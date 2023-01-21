@@ -36,7 +36,7 @@ const ProgressBar = ({
               position: "absolute",
             }}
             animate={{ width: `${barAnimation}` }}
-            transition={{ duration: 0.59976 }}
+            transition={{ duration: 0.6, ease: "linear" }}
           ></motion.div>
           <motion.div
             initial={{ width: "38.88%" }}
