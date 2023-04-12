@@ -17,6 +17,19 @@ function App() {
 
   const [key1, setKey1] = useState(null);
   const [key2, setKey2] = useState(null);
+  const [inputHistory, setInputHistory] = useState([]);
+  const updateInputHistory = (inputLog, status, frameDataMsLength) => {
+    if (status === "fail") {
+      const placeholders = Array(frameDataMsLength - 1).fill("kamu");
+      setInputHistory((prevInputHistory) => [
+        ...prevInputHistory,
+        inputLog,
+        ...placeholders,
+      ]);
+    } else {
+      setInputHistory((prevInputHistory) => [...prevInputHistory, inputLog]);
+    }
+  };
 
   const [barAnimation, setBarAnimation] = useState("0%");
   let streak = localStorage.getItem("streak");
@@ -71,10 +84,11 @@ function App() {
                 streak={streak}
                 highScore={highScore}
                 videoRef={videoRef}
+                updateInputHistory={updateInputHistory}
               />
             )}
             <ScoreTracking></ScoreTracking>
-            <FrameHistory></FrameHistory>
+            <FrameHistory inputHistory={inputHistory}></FrameHistory>
           </div>
 
           <VideoRain videoRef={videoRef}></VideoRain>

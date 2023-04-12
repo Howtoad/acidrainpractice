@@ -1,4 +1,13 @@
-const FrameHistory = () => {
+import { useEffect, useRef } from "react";
+const FrameHistory = ({ inputHistory }) => {
+  const historyContainerRef = useRef(null);
+  useEffect(() => {
+    if (historyContainerRef.current) {
+      historyContainerRef.current.scrollTop =
+        historyContainerRef.current.scrollHeight;
+    }
+  }, [inputHistory]);
+
   const pclass = "text-white border-b pl-2";
   return (
     <div className="flex text-xl pl-2 mt-10">
@@ -9,17 +18,17 @@ const FrameHistory = () => {
         <p className={pclass}>24-26</p>
         <p className={pclass}>34-35</p>
       </div>
-      <div className="">
+      <div>
         <h3 className="text-white pl-2 text-3xl border-b">Input</h3>
-        <div className="max-h-[116px] scrollbar-thin scrollbar-thumb-gray-800">
-          <p className={pclass}>K: 55</p>
-          <p className={pclass}>J: 8 </p>
-          <p className={pclass}>J: 25 </p>
-          <p className={pclass}>J: 34 </p>
-          <p className={pclass}>K: 34</p>
-          <p className={pclass}>J: 10 </p>
-          <p className={pclass}>J: 24 </p>
-          <p className={pclass}>J: 35 </p>
+        <div
+          ref={historyContainerRef}
+          className="max-h-[116px] scrollbar-thin scrollbar-thumb-gray-800"
+        >
+          {inputHistory.map((input, index) => (
+            <p key={index} className={pclass}>
+              {input}
+            </p>
+          ))}
         </div>
       </div>
     </div>
