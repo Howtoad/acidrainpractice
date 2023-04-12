@@ -46,9 +46,9 @@ const CheckSequence = ({
         elapsedTime >= minTime &&
         elapsedTime <= maxTime
       ) {
-        const inputLog = `${key}: ${Math.floor(
-          elapsedTime / 16.66
-        )}`; /* Window: ${
+        const inputLog = `${key}: ${
+          currentIndex === 0 ? 0 : Math.floor(elapsedTime / 16.66)
+        }`; /* Window: ${
           minTime / 16.66
         } - ${maxTime / 16.66 - 1}`; */
 
@@ -69,10 +69,12 @@ const CheckSequence = ({
           setCurrentIndex(currentIndex + 1);
         }
       } else {
-        const inputLog = `${key}: ${Math.floor(elapsedTime / 16.66)} Window: ${
+        const inputLog = `${key}: ${Math.floor(
+          elapsedTime / 16.66
+        )}`; /* Window: ${
           minTime / 16.66
-        } - ${maxTime / 16.66 - 1}`;
-        updateInputHistory(inputLog, "fail", frameDataMs.length);
+        } - ${maxTime / 16.66 - 1}`; */
+        updateInputHistory(inputLog, "fail", frameDataMs.length, currentIndex);
         setCurrentIndex(0);
         setStartTime(null);
         setBarAnimation("0%");

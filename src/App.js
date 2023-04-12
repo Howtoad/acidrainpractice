@@ -18,9 +18,16 @@ function App() {
   const [key1, setKey1] = useState(null);
   const [key2, setKey2] = useState(null);
   const [inputHistory, setInputHistory] = useState([]);
-  const updateInputHistory = (inputLog, status, frameDataMsLength) => {
+
+  const updateInputHistory = (
+    inputLog,
+    status,
+    frameDataMsLength,
+    currentIndex
+  ) => {
     if (status === "fail") {
-      const placeholders = Array(frameDataMsLength - 1).fill("kamu");
+      const remainingInputs = frameDataMsLength - currentIndex - 1;
+      const placeholders = Array(remainingInputs).fill("N/A");
       setInputHistory((prevInputHistory) => [
         ...prevInputHistory,
         inputLog,
