@@ -9,6 +9,8 @@ const CheckSequence = ({
   streak,
   highScore,
   videoRef,
+  setInputHistory,
+  updateInputHistory,
 }) => {
   // Convert the time values from frames to milliseconds
   const frameDataMs = frameData.map((item) => {
@@ -44,11 +46,13 @@ const CheckSequence = ({
         elapsedTime >= minTime &&
         elapsedTime <= maxTime
       ) {
-        console.log(
-          `${key}, Framepress: ${Math.floor(elapsedTime / 16.66)} minFrame: ${
-            minTime / 16.66
-          }, maxFrame: ${maxTime / 16.66 - 1}`
-        );
+        const inputLog = `${key}: ${
+          currentIndex === 0 ? 0 : Math.floor(elapsedTime / 16.66)
+        }`; /* Window: ${
+          minTime / 16.66
+        } - ${maxTime / 16.66 - 1}`; */
+
+        updateInputHistory(inputLog);
         videoRef.current.play();
         // If we've reached the end of the sequence, print 'true' to the console
         if (currentIndex === frameDataMs.length - 1) {
@@ -65,8 +69,12 @@ const CheckSequence = ({
           setCurrentIndex(currentIndex + 1);
         }
       } else {
-        console.log("failFrame: " + Math.floor(elapsedTime / 16.66));
-        console.log("Kamu");
+        const inputLog = `${key}: ${Math.floor(
+          elapsedTime / 16.66
+        )}`; /* Window: ${
+          minTime / 16.66
+        } - ${maxTime / 16.66 - 1}`; */
+        updateInputHistory(inputLog, "fail", frameDataMs.length, currentIndex);
         setCurrentIndex(0);
         setStartTime(null);
         setBarAnimation("0%");
